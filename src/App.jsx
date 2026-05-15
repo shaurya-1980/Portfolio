@@ -62,7 +62,7 @@ function App() {
 
   {
     title: "Machine Learning",
-    image: "/certificates/ml.png",
+    image: "/certificates/m1.png",
   },
 
   {
@@ -71,17 +71,17 @@ function App() {
   },
 
   {
-    title: "Data Analytics",
+    title: "Artficial Intelligence",
     image: "/certificates/dataanalytics.png",
   },
 
   {
-    title: "Web Development",
-    image: "/certificates/webdev.png",
+    title: "Hackathon",
+    image: "/certificates/hackathon.png",
   },
 
   {
-    title: "Java Programming",
+    title: "AWS",
     image: "/certificates/java.png",
   },
 
