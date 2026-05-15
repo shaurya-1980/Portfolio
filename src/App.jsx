@@ -1,3 +1,5 @@
+import emailjs from "@emailjs/browser";
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 
@@ -17,6 +19,40 @@ import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 
 function App() {
+  const form = useRef();
+  const sendEmail = (e) => {
+
+  e.preventDefault();
+
+  emailjs.sendForm(
+    "service_4vpw38c",
+    "template_kw6ft4b",
+    form.current,
+    "CLy58jFuFqXTPKFwP"
+  )
+
+  .then(() => {
+
+    emailjs.sendForm(
+      "service_4vpw38c",
+      "template_p7adnx4",
+      form.current,
+      "CLy58jFuFqXTPKFwP"
+    );
+
+    alert("Meeting Booked Successfully!");
+
+  })
+
+  .catch((error) => {
+
+    console.log(error);
+
+    alert("Failed to send email.");
+
+  });
+
+};
 
   const particlesInit = async (main) => {
     await loadFull(main);
@@ -24,22 +60,37 @@ function App() {
 
   const certificates = [
 
-    {
-      title: "Machine Learning",
-      image: "/certificates/ml.png",
-    },
+  {
+    title: "Machine Learning",
+    image: "/certificates/ml.png",
+  },
 
-    {
-      title: "Python",
-      image: "/certificates/python.png",
-    },
+  {
+    title: "Python Programming",
+    image: "/certificates/python.png",
+  },
 
-    {
-      title: "Data Analytics",
-      image: "/certificates/dataanalytics.png",
-    },
+  {
+    title: "Data Analytics",
+    image: "/certificates/dataanalytics.png",
+  },
 
-  ];
+  {
+    title: "Web Development",
+    image: "/certificates/webdev.png",
+  },
+
+  {
+    title: "Java Programming",
+    image: "/certificates/java.png",
+  },
+
+  {
+    title: "SQL & Databases",
+    image: "/certificates/sql.png",
+  },
+
+];
 
   const projects = [
 
@@ -132,38 +183,40 @@ function App() {
 
           <div className="hidden md:flex gap-5">
 
-            {[
-              ["About", "#about", <FaUser />],
-              ["Skills", "#skills", <FaCode />],
-              ["Projects", "#projects", <FaProjectDiagram />],
-              ["Certificates", "/#certificates", <FaCertificate />],
-              ["Contact", "#contact", <FaEnvelope />],
-            ].map((item,index)=>(
+  {[
+    ["About", "#about", <FaUser />],
+    ["Skills", "#skills", <FaCode />],
+    ["Projects", "#projects", <FaProjectDiagram />],
+    ["Certificates", "#certificates", <FaCertificate />],
+    ["Contact", "#contact", <FaEnvelope />],
+  ].map((item,index)=>(
 
-              <a
-                key={index}
-                href={item[1]}
-                target={item[0] === "Certificates" ? "_blank" : undefined}
-                rel={item[0] === "Certificates" ? "noreferrer" : undefined}
-                className="flex items-center gap-3 px-6 py-4 rounded-2xl border border-white/10 bg-white/5 hover:border-cyan-400 hover:shadow-[0_0_20px_cyan] transition duration-300"
-              >
+    <a
+      key={index}
+      href={item[1]}
+      className="flex items-center gap-3 px-6 py-4 rounded-2xl border border-white/10 bg-white/5 hover:border-cyan-400 hover:shadow-[0_0_20px_cyan] transition duration-300"
+    >
 
-                {item[2]}
+      {item[2]}
 
-                {item[0]}
+      {item[0]}
 
-              </a>
+    </a>
 
-            ))}
+  ))}
 
-          </div>
+</div>
+       
 
         </div>
 
       </nav>
 
       {/* HERO */}
-       <section className="relative z-10 flex flex-col lg:flex-row justify-between items-center px-8 md:px-20 pt-32 pb-10 min-h-screen">
+       <section
+  id="about"
+  className="relative z-10 flex flex-col lg:flex-row justify-between items-center px-8 md:px-20 pt-32 pb-10 min-h-screen"
+>
 
         {/* LEFT */}
 
@@ -292,7 +345,7 @@ function App() {
               </a>
 
               <a
-                href="mailto:yourmail@gmail.com"
+                href="mailto:singhshauryapratap636@gmail.com"
                 className="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-3xl hover:border-purple-400 hover:shadow-[0_0_25px_purple] transition"
               >
 
@@ -433,7 +486,7 @@ function App() {
 
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
           {certificates.map((cert,index)=>(
 
@@ -469,24 +522,146 @@ function App() {
 
       {/* CONTACT */}
 
-      <section
-        id="contact"
-        className="relative z-10 px-8 md:px-20 py-28 text-center"
-      >
+      {/* CONTACT */}
 
-        <h2 className="text-6xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+<section
+  id="contact"
+  className="relative z-10 px-8 md:px-20 py-28"
+>
 
-          Contact Me
+  <h2 className="text-6xl font-bold text-center mb-16 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
 
-        </h2>
+    Book A Meeting
 
-        <p className="mt-8 text-gray-400 text-2xl">
+  </h2>
 
-          Let's build something futuristic together.
+  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
-        </p>
+    {/* LEFT SIDE */}
 
-      </section>
+    <motion.div
+      whileHover={{ scale:1.02 }}
+      className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-10 hover:border-cyan-400 hover:shadow-[0_0_30px_cyan]"
+    >
+
+      <h3 className="text-4xl font-bold mb-8">
+
+        Contact Information
+
+      </h3>
+
+      <div className="space-y-8 text-xl text-gray-300">
+
+        <div>
+
+          <p className="text-cyan-400 mb-2">
+            Email
+          </p>
+
+          <p>
+            singhshauryapratap636@gmail.com
+          </p>
+
+        </div>
+
+        <div>
+
+          <p className="text-purple-400 mb-2">
+            LinkedIn
+          </p>
+
+          <a
+            href="https://www.linkedin.com/in/shaurya-pratap-singh-504313389/"
+            target="_blank"
+            className="hover:text-cyan-400 transition"
+          >
+
+            linkedin.com/in/shaurya-pratap-singh
+
+          </a>
+
+        </div>
+
+        <div>
+
+          <p className="text-blue-400 mb-2">
+            Availability
+          </p>
+
+          <p>
+            Open for collaborations & opportunities
+          </p>
+
+        </div>
+
+      </div>
+
+    </motion.div>
+
+    {/* RIGHT SIDE FORM */}
+
+    <motion.div
+      whileHover={{ scale:1.02 }}
+      className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-10 hover:border-purple-400 hover:shadow-[0_0_30px_purple]"
+    >
+
+      <h3 className="text-4xl font-bold mb-8">
+
+        Schedule Appointment
+
+      </h3>
+
+      <form ref={form} onSubmit={sendEmail} className="space-y-6">
+
+        <input
+          type="text"
+          placeholder="Your Name"
+          name="user_name"
+          className="w-full p-5 rounded-2xl bg-black/30 border border-white/10 focus:border-cyan-400 outline-none text-lg"
+        />
+
+        <input
+          type="email"
+          placeholder="Your Email"
+          name="user_email"
+          className="w-full p-5 rounded-2xl bg-black/30 border border-white/10 focus:border-cyan-400 outline-none text-lg"
+        />
+
+        <input
+          type="date"
+          name="user_date"
+          className="w-full p-5 rounded-2xl bg-black/30 border border-white/10 focus:border-cyan-400 outline-none text-lg"
+        />
+
+        <input
+          type="time"
+          name="user_time"
+          className="w-full p-5 rounded-2xl bg-black/30 border border-white/10 focus:border-cyan-400 outline-none text-lg"
+        />
+
+        <textarea
+          rows="5"
+          placeholder="Meeting Purpose"
+          name="user_message"
+          className="w-full p-5 rounded-2xl bg-black/30 border border-white/10 focus:border-cyan-400 outline-none text-lg"
+        ></textarea>
+
+        <button
+          type="submit"
+          className="w-full py-5 rounded-2xl bg-gradient-to-r from-cyan-500 to-purple-500 text-xl font-bold hover:scale-105 transition duration-300 shadow-[0_0_25px_cyan]"
+        >
+
+          Book Slot
+
+        </button>
+
+      </form>
+
+    </motion.div>
+
+  </div>
+
+</section>
 
     </div>
 
